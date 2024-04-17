@@ -247,9 +247,9 @@ main {
         align-items: center;
         padding: 1em;
         margin: 2em 0;
+        width: 100%;
 
         p {
-            width: 60%;
             text-decoration: none;
             color: $text-dark;
             font-weight: 500;
@@ -328,22 +328,71 @@ footer {
             width: auto;
             position: absolute;
             bottom: 0;
-        }
 
-        nav ul {
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        nav li {
-            display: inline;
-            position: relative;
-            bottom: 0;
+            ul {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            li {
+                display: inline;
+                position: relative;
+                bottom: 0;
+                font-size: 1.125em;
+            }
         }
     }
 
+    #pictureGrid {
+        grid-gap: 2.5em;
+
+        #text1,
+        #text2 {
+            font-size: 2em;
+        }
+    }
+
+    main {
+
+        #buyBtn {
+            p {
+                font-size: 1.75em;
+                padding: 1.25em;
+            }
+        }
+
+        h2 {
+            font-size: 2.25em;
+        }
+
+        ul {
+            li {
+                font-size: 1.625em;
+            }
+        }
+
+        article {
+            p {
+                font-size: 1.5em;
+                line-height: 1.6;
+            }
+        }
+    }
+
+
+
+    footer {
+        h5 {
+            font-size: 2.25em;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+    }
 }
 
 @media(prefers-color-scheme:dark) {
