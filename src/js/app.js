@@ -1,5 +1,7 @@
 "use strict";
 
+// Navigationsmeny
+
 let openBtn = document.getElementById("open-menu");
 let closeBtn = document.getElementById("close-menu");
 let navMenuEl = document.getElementById("nav-menu");
@@ -17,3 +19,4 @@ function toggleMenu() {
         navMenuEl.style.display = "none";
     }
 }
+

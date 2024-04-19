@@ -10,12 +10,23 @@
     box-shadow: $x $y $blur $color;
 }
 
+@mixin btn-theme($light-theme:true){
+    @if $light-theme{
+        background:$primary;
+    }
+    @else{
+        background:$secondary;
+    }
+}
+
+
+// Default styles för body och root
 
 body {
     color: $text-light;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    background-color: $bg;
+    background-color: $bg-light;
 }
 
 * {
@@ -23,6 +34,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+// Styles för header, ger den fast höjd som ger plats för logga och navigationslänkar
 
 header {
     height: 60px;
@@ -34,36 +47,21 @@ header {
     justify-content: space-between;
     align-items: center;
     max-width: 100vw;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    @include box-shadow(0, 0, 10px, rgba(0,0,0.5));
     z-index: 1000;
-
-    .menu-btn {
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        background-color: white;
-        border: none;
-        cursor: pointer;
-    }
-
-
-    .menu-btn:hover {
-        box-shadow: 0 0px 5px rgba(0, 0, 0, 0.4);
-
-    }
-
-    .bars {
-        display: block;
-        width: 20px;
-        height: 3px;
-        background-color: black;
-        margin: 5px 0;
+    
+    #logoText{
+        color:$text-light;
+        text-decoration: none;
+        font-size:1.75em;
     }
 
 }
 
+// Sätter nav-menyn på höger sida när den öppnas. Nestar även child-elements inom naven som listor och anchor element.
+
 nav {
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+    @include box-shadow(0, 0, 10px, rgba(0,0,0.5));
     font-size: 1.5em;
     position: absolute;
     right: 0;
@@ -71,7 +69,7 @@ nav {
     height: 100vh;
     width: 200px;
     display: none;
-    background-color: $bg;
+    background-color: $bg-light;
 
 
     ul {
@@ -80,24 +78,26 @@ nav {
         text-align: center;
         margin: 0 auto;
         padding: 0;
-    }
 
+        
     li {
         padding: 0.8em 0;
         width: 100%;
-        color: $light-links;
+        color: $links-light;
+
+        a {
+            color: black;
+            text-decoration: none;
+            padding: 0 1em;
+    
+            &:hover {
+                color: lighten($primary, 20%);
+            }
+    }
+    }
     }
 
-    a {
-        color: black;
-        text-decoration: none;
-        padding: 0 1em;
-
-        &:hover {
-            color: lighten($primary, 20%);
-        }
-    }
-
+    // Knapp för att öppna nav-meny på enheter med mindre bredd
 
     .menu-btn {
         display: flex;
@@ -117,9 +117,11 @@ nav {
     }
 
     .menu-btn:hover {
-        box-shadow: 0 0px 5px rgba(0, 0, 0, 0.4);
+        @include box-shadow(0, 0, 10px, rgba(0,0,0.4));
 
     }
+
+    // Linjer som skapar hamburger-icon
 
     .bars {
         display: block;
@@ -133,6 +135,8 @@ nav {
         margin: 1em 1.5em;
         padding: 10px 15px;
     }
+
+    // Linjer som utgör knappen för att stänga ner hamburger-menyn
 
     .cross1 {
         width: 25px;
@@ -149,20 +153,22 @@ nav {
     }
 }
 
-
-
+// Grid som innehåller bilder av ved och text angående företaget
 
 #pictureGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     object-fit: contain;
+    justify-items:center;
 
     picture img {
         width: 100%;
         border-radius: 1em;
-        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+        @include box-shadow(0, 0, 10px, rgba(0,0,0.5));
 
     }
+
+    // Använder id:s för att sortera elementen i griden 
 
     #picture1 {
         grid-area: 1/1/1/3;
@@ -187,10 +193,14 @@ nav {
     }
 }
 
+// Här har jag nestat massor av element från både index.html och sass.html. 
+
 main {
     h1 {
         text-align: center;
-        padding: 20px;
+        padding: 10px;
+        font-size:1.75em;
+        margin-top:1em;
 
     }
 
@@ -206,8 +216,11 @@ main {
         padding: 2em 0;
 
         img {
-            width: 95%;
             border-radius: 1.25em;
+            width:100%;
+        }
+        picture{
+            width:80%;
         }
     }
 
@@ -224,7 +237,7 @@ main {
 
     ul {
         width: 90%;
-        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+        @include box-shadow(0, 0, 10px, rgba(0,0,0.1));
         border-radius: 20px;
 
         li {
@@ -253,7 +266,7 @@ main {
             text-decoration: none;
             color: $text-dark;
             font-weight: 500;
-            background: $primary;
+            @include btn-theme($light-theme:true);
             padding: 30px;
             border-radius: 10px;
             text-align: center;
@@ -268,16 +281,18 @@ main {
 
     article {
         h2 {
+            // Mixin
             @include article-heading;
         }
 
         p {
             font-size: 1.25em;
-            padding: 0.5em;
+            padding: 1em;
             line-height: 1.4em;
         }
 
         h3 {
+            // Använder extend för att slippa repetera kod
             @extend h2;
             margin: 2em 0;
         }
@@ -286,8 +301,11 @@ main {
 }
 
 footer {
-    background-color: $bg-dark;
-    color: $text-dark;
+    background-color: $footer-light;
+    color: $text-light;
+
+    // Mixin
+    @include box-shadow(0, 0, 10px, rgba(0,0,0.5));
 
     h5 {
         font-size: 1.5em;
@@ -302,14 +320,18 @@ footer {
 
 }
 
+// Media-query för skärmar med bredd under 992px
 
 @media only screen and (min-width:992px) {
     header {
         padding: 0 3em;
         position: relative;
+        height:80px;
 
-
-
+        #logoText{
+            font-size:2.75em;
+            margin-left:0.5em;
+        }
         .menu-btn {
             display: none;
         }
@@ -322,9 +344,11 @@ footer {
         nav {
             text-align: center;
             display: block !important;
+
+            // Tar bort box-shadow från navbaren när den inte sitter på högersidan
             box-shadow: 0 0px 0px;
             height: auto;
-            font-size: 1.4em;
+            font-size: 1.55em;
             width: auto;
             position: absolute;
             bottom: 0;
@@ -363,6 +387,11 @@ footer {
                 padding: 1.25em;
             }
         }
+        h1{
+            font-size:2.5em;
+            margin-top:1.5em;
+            padding:1.125em;
+        }
 
         h2 {
             font-size: 2.25em;
@@ -395,6 +424,8 @@ footer {
     }
 }
 
+// Styles för användare som använder dark-theme på sin webbläsare
+
 @media(prefers-color-scheme:dark) {
     body {
         background-color: $bg-dark;
@@ -402,27 +433,44 @@ footer {
     }
 
     footer {
-        background-color: $bg;
-        color: $text-light;
+        background-color: $footer-dark;
+        color: $footer-text-dark;
     }
 
     header {
-        @include box-shadow(0, 0px, 10px, rgba(255, 255, 255));
-
-        .menu-btn {
-            background: $bg-dark;
+        @include box-shadow(0, 0px, 10px, rgba(0,0,0.5));
+        background:$header-dark;
+        .open{
+            background:$header-dark;
+        }
+        .close{
+            background:$bg-dark;
         }
 
         .bars {
             background-color: white;
         }
+        #logoText{
+            color:$text-dark;
+        }
     }
 
     nav {
-        background-color: $bg-dark;
+        background:$header-dark;
+        ul{
+            li{
+                a {
+                    color: $text-dark;
+                  }
 
-        a {
-            color: $text-dark;
+              }        
+        }      
+}
+
+    #buyBtn{
+        p{
+            @include btn-theme($light-theme:false);
         }
     }
+
 }

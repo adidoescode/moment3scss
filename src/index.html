@@ -15,10 +15,9 @@
 
 <body>
     <header>
-        <div class="logo"><a href="index.html">
-                <img src="bilagor/logo.png" alt="">
+        <a href="index.html" id="logoText">
+            J<u>a</u>ngr<u>e</u>n
             </a>
-        </div>
         <button class="menu-btn open" id="open-menu">
             <span class="menu-icon">
                 <span class="bars"></span>
@@ -44,7 +43,7 @@
         </nav>
     </header>
     <main>
-        <h1>Jangren Ved</h1>
+        <h1>Våran Ved</h1>
         <div id="pictureGrid">
             <picture id="picture1">
                 <source media="(min-width: 801px)" srcset="bilagor/ved1-medium.jpg">
@@ -53,8 +52,7 @@
             </picture>
             <p id="text1">Vi erbjuder högkvalitativ ved till bra pris💸</p>
             <picture id="picture2">
-                <source media="(min-width: 1521px)" srcset="bilagor/ved2-large.jpg">
-                <source media="(min-width: 801px) and (max-width:1520px)" srcset="bilagor/ved2-medium.jpg">
+                <source media="(min-width: 801px)" srcset="bilagor/ved2-medium.jpg">
                 <img src="bilagor/ved2-small.jpg" alt="Stapel av vedträn lutade mot en trävägg inuti ett skjul.">
             </picture>
             <p id="text2">Familjeägt företag som ger dig den hjälpen du förtjänar🤝</p>
@@ -63,7 +61,10 @@
             <p>BESTÄLL HÄR</p>
         </div>
         <div class="img-wrapper">
-            <img src="bilagor/fireplace.jpg" alt="Bild på en brasa som brinner under en skorssten">
+            <picture>
+                <source media="(min-width: 801px)" srcset="bilagor/fireplace-large.jpg">
+            <img src="bilagor/fireplace.jpg" alt="Bild på en brasa som brinner under en skorssten"> 
+            </picture>
         </div>
         <h2>Varför beställa från oss på Jangren?</h2>
         <div class="text-wrapper">
